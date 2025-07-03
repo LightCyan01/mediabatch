@@ -1,9 +1,9 @@
 from src.baseupscaler import BaseUpscaler
-from src.utils import convert_to_rgb, save_image, get_device
+from src.utils import convert_to_rgb, save_image, get_device, load_images
 import torch
 
 class ImageUpscale(BaseUpscaler):
-    def __init__(self, model_path: str):
+    def __init__(self, model_path):
         #load model
         upscaler = BaseUpscaler.load_from_file(model_path)
         
@@ -17,7 +17,7 @@ class ImageUpscale(BaseUpscaler):
         with torch.no_grad():
             return self.model(image_tensor.to(self._device))
         
-    def process_image(self, image_path: str) -> None:
+    def process_image(self, image_path) -> None:
         #load and convert image to RGB
         image = convert_to_rgb(image_path)
         
@@ -33,6 +33,18 @@ class ImageUpscale(BaseUpscaler):
         #save image
         save_image(output_image, image_path)
         
+    def process_batch_image(self, input_dir) -> None:
+        image_files = load_images(input_dir)
+        
+        if not image_files:
+            print(f"No images found in {input_dir}")
+            return
+
+        for image_file in image_files:
+            print(f"Processing {image_file.name}")
+            self.process_image(image_file)
+        
+        print("Batch processing Complete!")
         
         
 
