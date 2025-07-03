@@ -1,4 +1,4 @@
-from abc import ABC, abstractmethod
+from abc import ABC
 from PIL import Image
 from pathlib import Path
 from spandrel import ImageModelDescriptor, ModelLoader
@@ -6,8 +6,8 @@ import torch
 import torchvision.transforms as transforms
 
 class BaseUpscaler(ABC):
-    def __init__(self, s_model: ImageModelDescriptor):
-        self._model = s_model
+    def __init__(self, model: ImageModelDescriptor):
+        self._model = model
     
     @staticmethod
     def pil_to_tensor(image: Image) -> torch.Tensor:
@@ -34,7 +34,7 @@ class BaseUpscaler(ABC):
         return output_image
     
     @classmethod
-    def load_from_file(cls, path: str | Path):
+    def load_from_file(cls, path: Path):
         loader = ModelLoader()
         model = loader.load_from_file(path)
         if not isinstance(model, ImageModelDescriptor):
@@ -43,7 +43,7 @@ class BaseUpscaler(ABC):
         return cls(model)
     
     @classmethod
-    def load_state_dict_from_file(cls, path: str | Path):
+    def load_state_dict_from_file(cls, path: Path):
         loader = ModelLoader()
         model = loader.load_state_dict_from_file(path)
         if not isinstance(model, ImageModelDescriptor):
