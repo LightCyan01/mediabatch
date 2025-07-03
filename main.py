@@ -1,17 +1,21 @@
-from src import utils
 import tkinter as tk
+import torch
+from src.utils import get_device
+from src.imageupscale import ImageUpscale
 from tkinter.filedialog import askopenfilename
-from src.upscaler import PytorchModel
 
 def main():
-    print("Mediabatch - A GPU-aware video & image batch-processor")
-
-    image_process(utils.get_device())
+    print("Mediabatch - Video & image batch-processor")
+    device = get_device()
+    if device.type == 'cuda':
+        print(f"Using GPU: {torch.cuda.get_device_name()}\n")
+    else:
+        print("Using CPU\n")
+        
+    image_process()
     
 
-def image_process(device):
-    
-    print(device)
+def image_process():
     print("1. Image Upscale")
     
     option = input("Select your option: ")
@@ -21,7 +25,7 @@ def image_process(device):
         model_path = get_model()
         
         if model_path:
-            upscaler = PytorchModel(model_path, device)
+            upscaler = ImageUpscale(model_path)
             print("Model loaded Successfully\n")
             print("Select an Image:")
             image_path = get_image()
@@ -29,7 +33,7 @@ def image_process(device):
                 print("Image loaded Successfully\n")
             else:
                 raise FileNotFoundError("No Image file selected")
-            upscaler.process(image_path)
+            upscaler.process_image(image_path)
         else:
             raise FileNotFoundError("No model file selected")
 
