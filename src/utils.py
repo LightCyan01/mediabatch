@@ -1,11 +1,10 @@
 from pathlib import Path
 from PIL import Image
+import subprocess
 import torch
 
 def get_device():
-    if torch.cuda.is_available():
-        return torch.device('cuda')
-    return torch.device('cpu')
+    return torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 def convert_to_rgb(image_path: Path):
     image = Image.open(image_path)
@@ -29,9 +28,28 @@ def load_images(input_dir: Path = Path("input/")):
     Loads PIL images from input directory 
     """
     input_dir.mkdir(exist_ok=True)
-    ext = {'.png', '.jpg','.jpeg','.bmp','.tiff','.webp'}
     
-    image_files = [f for f in input_dir.iterdir() 
-                   if f.is_file() and f.suffix.lower() in ext]
+    image_files = [f for f in input_dir.iterdir() if f.is_file()]
     return image_files
-        
+
+
+def get_video_fps(video_path: Path):
+    """
+    Return the container-reported average FPS as a *string* that can be
+    passed straight to ffmpeg (-r or -framerate).  Falls back gracefully
+    when avg_frame_rate is 0/0.
+    """
+    def probe(field: str):
+        cmd = [
+            "ffprobe", "-v", "error",
+            "-select_streams", "v:0",
+            "-show_entries", f"stream={field}",
+            "-of", "default=nokey=1:noprint_wrappers=1",
+            str(video_path),
+        ]
+        return subprocess.check_output(cmd, text=True).strip()
+
+    fps = probe("avg_frame_rate")            # e.g. 30000/1001
+    if fps in ("0/0", "", "N/A"):            # malformed or raw stream
+        fps = probe("r_frame_rate")          # last resort
+    return fps                               
