@@ -49,7 +49,7 @@ def get_video_fps(video_path: Path):
         ]
         return subprocess.check_output(cmd, text=True).strip()
 
-    fps = probe("avg_frame_rate")            # e.g. 30000/1001
+    fps = probe("avg_frame_rate")            
     if fps in ("0/0", "", "N/A"):            # malformed or raw stream
         fps = probe("r_frame_rate")          # last resort
     return fps                               
