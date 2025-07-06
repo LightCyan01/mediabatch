@@ -51,6 +51,4 @@ class BaseUpscaler(ABC):
         
         return cls(model)
 
-    def run(self, image_tensor: torch.Tensor) -> torch.Tensor:
-        pass
         
