@@ -3,6 +3,7 @@ import torch
 from pathlib import Path
 from src.utils import get_device
 from src.imageupscale import ImageUpscale
+from src.videoupscale import VideoUpscale
 from tkinter.filedialog import askopenfilename
 
 def main():
@@ -18,6 +19,7 @@ def main():
 
 def image_process():
     print("1. Image Upscaling")
+    print("2. Video Upscaling")
     
     option = input("Select your option: ")
     
@@ -53,6 +55,29 @@ def image_process():
             else:
                 raise FileNotFoundError("No model file selected")
             
+    if option == "2":
+        print("1. Single Video Upscaling")
+        print("2. Batch Video Upscaling")
+        option3 = input("Select your option")
+        if option3 == "1":
+            print("Select Pytorch Model")
+            model_path = Path(get_model())
+            
+            if model_path:
+                upscaler = VideoUpscale(model_path)
+                print("Model loaded successfully")
+                print("Select a Video")
+                video_path = Path(get_video())
+                if video_path:
+                    print("Video loaded successfully")
+                else:
+                    raise FileNotFoundError("No video file selected")
+                upscaler.process_video(video_path)
+            else:
+                raise FileNotFoundError("No model file selected")
+
+        
+            
 
 def get_model():
     root = tk.Tk()
@@ -67,10 +92,34 @@ def get_image():
     root = tk.Tk()
     root.withdraw()
     
-    image = askopenfilename(title="Select Image")
+    image = askopenfilename(
+        title="Select Image File",
+        filetypes=[
+            ("Image files", "*.png *.jpg *.jpeg *.bmp *.tiff *.webp *.gif"),
+            ("PNG files", "*.png"),
+            ("JPEG files", "*.jpg *.jpeg"),
+            ("BMP files", "*.bmp"),
+            ("TIFF files", "*.tiff *.tif"),
+            ("WebP files", "*.webp"),
+            ("GIF files", "*.gif"),
+            ("All files", "*.*")
+        ]
+    )
     
     root.destroy()
     return image
+
+def get_video():
+    root = tk.Tk()
+    root.withdraw()
+    
+    video = askopenfilename(
+        title="Select Video File",
+        filetypes=[("Video files", "*.mp4 *.avi *.mov *.mkv"), ("All files", "*.*")]
+    )
+    
+    root.destroy()
+    return video
     
 if __name__ == "__main__":
     main()
