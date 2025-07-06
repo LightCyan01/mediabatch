@@ -17,7 +17,7 @@ class ImageUpscale(BaseUpscaler):
         with torch.no_grad():
             return self.model(image_tensor.to(self._device))
         
-    def process_image(self, image_path) -> None:
+    def process_image(self, image_path, output_dir = None) -> None:
         #load and convert image to RGB
         image = convert_to_rgb(image_path)
         
@@ -31,7 +31,10 @@ class ImageUpscale(BaseUpscaler):
         output_image = self.tensor_to_pil(result)
         
         #save image
-        save_image(output_image, image_path)
+        if output_dir:
+            save_image(output_image, image_path, output_dir)
+        else:
+            save_image(output_image, image_path)
         
     def process_batch_image(self, input_dir) -> None:
         image_files = load_images(input_dir)
