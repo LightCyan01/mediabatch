@@ -34,11 +34,6 @@ def load_images(input_dir: Path = Path("input/")):
 
 
 def get_video_fps(video_path: Path):
-    """
-    Return the container-reported average FPS as a *string* that can be
-    passed straight to ffmpeg (-r or -framerate).  Falls back gracefully
-    when avg_frame_rate is 0/0.
-    """
     def probe(field: str):
         cmd = [
             "ffprobe", "-v", "error",
