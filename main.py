@@ -75,6 +75,18 @@ def image_process():
                 upscaler.process_video(video_path)
             else:
                 raise FileNotFoundError("No model file selected")
+        else:
+            print("Select Pytorch Model")
+            model_path = Path(get_model())
+            
+            if model_path:
+                upscaler = VideoUpscale(model_path)
+                print("Model loaded successfully")
+                print("Processing videos from input/ directory")
+                upscaler.batch_process_video(Path("input/"))
+            else:
+                raise FileNotFoundError("No model file selected")
+                
 
         
             
