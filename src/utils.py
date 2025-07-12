@@ -14,9 +14,6 @@ def convert_to_rgb(image_path: Path):
     return image
 
 def save_image(image: Image.Image, image_path: Path, output_dir: Path = Path("output/")):
-    """
-    Save PIL image to output directory with original filename from path
-    """
     output_dir.mkdir(exist_ok=True)
     
     filename = image_path.name
@@ -24,9 +21,6 @@ def save_image(image: Image.Image, image_path: Path, output_dir: Path = Path("ou
     image.save(final_path)
     
 def load_images(input_dir: Path = Path("input/")):
-    """
-    Loads PIL images from input directory 
-    """
     input_dir.mkdir(exist_ok=True)
     
     image_extensions = {'.png', '.jpg', '.jpeg', '.bmp', '.tiff', '.tif', '.webp', '.gif'}
@@ -34,9 +28,6 @@ def load_images(input_dir: Path = Path("input/")):
     return image_files
 
 def load_videos(input_dir: Path = Path("input/")):
-    """
-    Loads video files from input directory
-    """
     input_dir.mkdir(exist_ok=True)
     
     video_extensions = {'.mp4', '.avi', '.mov', '.mkv'}
