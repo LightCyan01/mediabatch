@@ -1,6 +1,6 @@
 from src.imageupscale import ImageUpscale
 from pathlib import Path
-from src.utils import get_video_fps
+from src.utils import get_video_fps, load_videos
 import subprocess
 import tempfile
 
@@ -30,7 +30,21 @@ class VideoUpscale(ImageUpscale):
                 "-map", "0:v:0", "-map", "1:a:0?", "-c:v", "libx264", "-pix_fmt", "yuv420p", "-r", fps, "-c:a", "copy",
                 str(output_video)], check=True)
                 
+    def batch_process_video(self, input_dir: Path):
+        video_files = load_videos(input_dir)
+        
+        if not video_files:
+            print(f"No videos found in {input_dir}")
+            
+        for i, video_file in enumerate(video_files, 1):
+            try:
+                print(f"[{i}/{len(video_files)}] Processing: {video_file.name}")
                 
+                self.process_video(video_file)
+                print(f"Complete: {video_file.name}")
+            except Exception as e:
+                  print(f"Error processing {video_file.name}: {e}") 
+                  continue         
         
         
         
