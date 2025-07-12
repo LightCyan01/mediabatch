@@ -29,8 +29,19 @@ def load_images(input_dir: Path = Path("input/")):
     """
     input_dir.mkdir(exist_ok=True)
     
-    image_files = [f for f in input_dir.iterdir() if f.is_file()]
+    image_extensions = {'.png', '.jpg', '.jpeg', '.bmp', '.tiff', '.tif', '.webp', '.gif'}
+    image_files = [f for f in input_dir.iterdir() if f.is_file() and f.suffix.lower() in image_extensions]
     return image_files
+
+def load_videos(input_dir: Path = Path("input/")):
+    """
+    Loads video files from input directory
+    """
+    input_dir.mkdir(exist_ok=True)
+    
+    video_extensions = {'.mp4', '.avi', '.mov', '.mkv'}
+    video_files = [f for f in input_dir.iterdir() if f.is_file() and f.suffix.lower() in video_extensions]
+    return video_files
 
 
 def get_video_fps(video_path: Path):
