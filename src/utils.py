@@ -2,6 +2,8 @@ from pathlib import Path
 from PIL import Image
 import subprocess
 import torch
+import tkinter as tk
+from tkinter.filedialog import askopenfilename
 
 def get_device():
     return torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -50,3 +52,45 @@ def get_video_fps(video_path: Path):
     if fps in ("0/0", "", "N/A"):            # malformed or raw stream
         fps = probe("r_frame_rate")          # last resort
     return fps                               
+
+def get_model():
+    root = tk.Tk()
+    root.withdraw()
+    
+    model = askopenfilename(title="Select Pytorch Model")
+    
+    root.destroy()
+    return model
+
+def get_image():
+    root = tk.Tk()
+    root.withdraw()
+    
+    image = askopenfilename(
+        title="Select Image File",
+        filetypes=[
+            ("Image files", "*.png *.jpg *.jpeg *.bmp *.tiff *.webp *.gif"),
+            ("PNG files", "*.png"),
+            ("JPEG files", "*.jpg *.jpeg"),
+            ("BMP files", "*.bmp"),
+            ("TIFF files", "*.tiff *.tif"),
+            ("WebP files", "*.webp"),
+            ("GIF files", "*.gif"),
+            ("All files", "*.*")
+        ]
+    )
+    
+    root.destroy()
+    return image
+
+def get_video():
+    root = tk.Tk()
+    root.withdraw()
+    
+    video = askopenfilename(
+        title="Select Video File",
+        filetypes=[("Video files", "*.mp4 *.avi *.mov *.mkv"), ("All files", "*.*")]
+    )
+    
+    root.destroy()
+    return video

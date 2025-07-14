@@ -1,10 +1,8 @@
-import tkinter as tk
 import torch
 from pathlib import Path
-from src.utils import get_device
+from src.utils import get_device, get_model, get_image, get_video
 from src.imageupscale import ImageUpscale
 from src.videoupscale import VideoUpscale
-from tkinter.filedialog import askopenfilename
 
 def main():
     print("Mediabatch - Video & image batch-processor")
@@ -87,51 +85,6 @@ def image_process():
             else:
                 raise FileNotFoundError("No model file selected")
                 
-
-        
-            
-
-def get_model():
-    root = tk.Tk()
-    root.withdraw()
-    
-    model = askopenfilename(title="Select Pytorch Model")
-    
-    root.destroy()
-    return model
-
-def get_image():
-    root = tk.Tk()
-    root.withdraw()
-    
-    image = askopenfilename(
-        title="Select Image File",
-        filetypes=[
-            ("Image files", "*.png *.jpg *.jpeg *.bmp *.tiff *.webp *.gif"),
-            ("PNG files", "*.png"),
-            ("JPEG files", "*.jpg *.jpeg"),
-            ("BMP files", "*.bmp"),
-            ("TIFF files", "*.tiff *.tif"),
-            ("WebP files", "*.webp"),
-            ("GIF files", "*.gif"),
-            ("All files", "*.*")
-        ]
-    )
-    
-    root.destroy()
-    return image
-
-def get_video():
-    root = tk.Tk()
-    root.withdraw()
-    
-    video = askopenfilename(
-        title="Select Video File",
-        filetypes=[("Video files", "*.mp4 *.avi *.mov *.mkv"), ("All files", "*.*")]
-    )
-    
-    root.destroy()
-    return video
     
 if __name__ == "__main__":
     main()
