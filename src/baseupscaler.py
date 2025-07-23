@@ -37,18 +37,12 @@ class BaseUpscaler(ABC):
     def load_from_file(cls, path: Path):
         loader = ModelLoader()
         model = loader.load_from_file(path)
-        if not isinstance(model, ImageModelDescriptor):
-            raise ValueError(f"A model type '{type(model)}' is unsupported")
-        
         return cls(model)
     
     @classmethod
     def load_state_dict_from_file(cls, path: Path):
         loader = ModelLoader()
         model = loader.load_state_dict_from_file(path)
-        if not isinstance(model, ImageModelDescriptor):
-            raise ValueError(f"A model type '{type(model)}' is unsupported")
-        
         return cls(model)
 
         
