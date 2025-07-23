@@ -65,6 +65,7 @@ def get_model():
 def get_image():
     root = tk.Tk()
     root.withdraw()
+    root.attributes('-topmost', True)
     
     image = askopenfilename(
         title="Select Image File",
@@ -86,6 +87,7 @@ def get_image():
 def get_video():
     root = tk.Tk()
     root.withdraw()
+    root.attributes('-topmost', True)
     
     video = askopenfilename(
         title="Select Video File",
