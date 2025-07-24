@@ -32,7 +32,7 @@ def load_images(input_dir: Path = Path("input/")):
 def load_videos(input_dir: Path = Path("input/")):
     input_dir.mkdir(exist_ok=True)
     
-    video_extensions = {'.mp4', '.avi', '.mov', '.mkv'}
+    video_extensions = {'.mp4', '.avi', '.mov', '.mkv', '.webm', '.flv', '.wmv'}
     video_files = [f for f in input_dir.iterdir() if f.is_file() and f.suffix.lower() in video_extensions]
     return video_files
 
@@ -91,7 +91,15 @@ def get_video():
     
     video = askopenfilename(
         title="Select Video File",
-        filetypes=[("Video files", "*.mp4 *.avi *.mov *.mkv"), ("All files", "*.*")]
+        filetypes=[
+            ("Video files", "*.mp4 *.avi *.mov *.mkv *.webm *.flv *.wmv"),
+            ("MP4 files", "*.mp4"),
+            ("AVI files", "*.avi"),
+            ("MOV files", "*.mov"),
+            ("MKV files", "*.mkv"),
+            ("WebM files", "*.webm"),
+            ("All files", "*.*")
+        ]
     )
     
     root.destroy()
