@@ -1,7 +1,7 @@
 [project]
 name = "mediabatch"
 version = "0.1.0"
-description = "Add your description here"
+description = "A terminal-based image and video upscaling tool"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
