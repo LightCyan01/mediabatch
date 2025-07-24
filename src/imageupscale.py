@@ -1,5 +1,6 @@
 from src.baseupscaler import BaseUpscaler
 from src.utils import convert_to_rgb, save_image, get_device, load_images
+from tqdm.rich import tqdm
 import torch
 
 class ImageUpscale(BaseUpscaler):
@@ -37,14 +38,14 @@ class ImageUpscale(BaseUpscaler):
             save_image(output_image, image_path)
         
     def process_batch_image(self, input_dir) -> None:
+        
         image_files = load_images(input_dir)
         
         if not image_files:
             print(f"No images found in {input_dir}")
             return
 
-        for image_file in image_files:
-            print(f"Processing {image_file.name}")
+        for image_file in tqdm(image_files, desc="Upscaling images", unit="img"):
             self.process_image(image_file)
         
         print("Batch processing Complete!")
