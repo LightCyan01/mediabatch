@@ -1,6 +1,6 @@
 from src.baseupscaler import BaseUpscaler
 from src.utils import convert_to_rgb, save_image, get_device, load_images
-from tqdm.rich import tqdm
+from tqdm import tqdm
 import torch
 
 class ImageUpscale(BaseUpscaler):

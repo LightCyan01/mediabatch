@@ -4,8 +4,7 @@ import tempfile
 from src.imageupscale import ImageUpscale
 from pathlib import Path
 from src.utils import get_video_fps, load_videos
-from tqdm.rich import tqdm, TqdmExperimentalWarning
-warnings.filterwarnings("ignore", category=TqdmExperimentalWarning)
+from tqdm.rich import tqdm
 
 class VideoUpscale(ImageUpscale):
     def process_video(self, video_path: Path):
@@ -43,7 +42,6 @@ class VideoUpscale(ImageUpscale):
         for video_file in tqdm(video_files, desc="Processing videos", unit="video"):
             try:
                 self.process_video(video_file)
-                print(f"Complete: {video_file.name}")
             except Exception as e:
                   print(f"Error processing {video_file.name}: {e}") 
                   continue         
