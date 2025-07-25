@@ -1,5 +1,5 @@
-from src.baseupscaler import BaseUpscaler
-from src.utils import convert_to_rgb, save_image, get_device, load_images
+from mediabatch.core.baseupscaler import BaseUpscaler
+from mediabatch.utils.utils import convert_to_rgb, save_image, get_device, load_images
 from tqdm import tqdm
 import torch
 

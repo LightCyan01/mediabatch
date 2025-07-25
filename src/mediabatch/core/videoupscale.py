@@ -1,10 +1,9 @@
-import warnings
 import subprocess
 import tempfile
-from src.imageupscale import ImageUpscale
+from mediabatch.core.imageupscale import ImageUpscale
 from pathlib import Path
-from src.utils import get_video_fps, load_videos
-from tqdm.rich import tqdm
+from mediabatch.utils.utils import get_video_fps, load_videos
+from tqdm import tqdm
 
 class VideoUpscale(ImageUpscale):
     def process_video(self, video_path: Path):

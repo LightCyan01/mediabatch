@@ -1,7 +1,7 @@
 import sys
 from rich.console import Console
 from rich.panel import Panel
-from src.menu import main_menu, image_upscale_option, single_image_upscale, batch_image_upscale, video_upscale_option, single_video_upscale, batch_video_upscale, pause
+from mediabatch.menu.menu import main_menu, image_upscale_option, single_image_upscale, batch_image_upscale, video_upscale_option, single_video_upscale, batch_video_upscale, pause
 console = Console()
 
 def main():

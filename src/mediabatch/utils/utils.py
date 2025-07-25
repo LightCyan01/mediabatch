@@ -1,8 +1,8 @@
-from pathlib import Path
-from PIL import Image
 import subprocess
 import torch
 import tkinter as tk
+from pathlib import Path
+from PIL import Image
 from tkinter.filedialog import askopenfilename
 
 def get_device():

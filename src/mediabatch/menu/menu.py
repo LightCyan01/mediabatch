@@ -3,9 +3,9 @@ import torch
 from questionary import Style
 from rich.console import Console
 from pathlib import Path
-from src.utils import  get_model, get_image, get_video, get_device
-from src.imageupscale import ImageUpscale
-from src.videoupscale import VideoUpscale
+from mediabatch.utils.utils import  get_model, get_image, get_video, get_device
+from mediabatch.core.imageupscale import ImageUpscale
+from mediabatch.core.videoupscale import VideoUpscale
 
 
 console = Console()
@@ -95,7 +95,7 @@ def single_video_upscale():
     model_path = Path(model_path_str)
     upscaler = VideoUpscale(model_path)
     
-    video_path_str = get_model()
+    video_path_str = get_video()
     if not video_path_str:
         print("No Video File Selected")
         
