@@ -1,16 +1,16 @@
 # Mediabatch
 
-**Mediabatch** is a terminal-based image and video upscaling tool that uses AI models to enhance the resolution and quality of your media files. It provides both single file and batch processing capabilities through an intuitive text user interface (TUI).
+**Mediabatch** is a simple terminal-based image and video upscaling tool that uses AI models to enhance the resolution and quality of your media files. It provides both single file and batch processing capabilities through an intuitive text user interface (TUI).
 
 ## ✨ Features
 
-- **🖼️ Image Upscaling**: Single and batch image processing
-- **🎥 Video Upscaling**: Single and batch video processing
-- **🚀 GPU Acceleration**: Automatic CUDA detection for faster processing
-- **📁 Batch Processing**: Process entire directories of images or videos
-- **🎯 User-Friendly**: Interactive terminal interface with clear navigation
-- **🔧 Flexible**: Support for various image formats (PNG, JPEG, BMP, TIFF, WebP, GIF)
-- **🎬 Video Support**: Multiple video formats (MP4, AVI, MOV, MKV, WEBM, FLV, WMV)
+- **Image Upscaling**: Single and batch image processing
+- **Video Upscaling**: Single and batch video processing
+- **GPU Acceleration**: Automatic CUDA detection for faster processing
+- **Batch Processing**: Process entire directories of images or videos
+- **User-Friendly**: Interactive terminal interface with clear navigation
+- **Flexible**: Support for various image formats (PNG, JPEG, BMP, TIFF, WebP, GIF)
+- **Video Support**: Multiple video formats (MP4, AVI, MOV, MKV, WEBM, FLV, WMV)
 
 ## 🔧 Requirements
 
@@ -84,16 +84,6 @@ The tool expects and creates these directories:
 - `output/` - Processed files are saved here
 - `models/` - Store your AI upscaling models
 
-### Workflow
-
-1. **Launch the application**
-2. **Select processing type**:
-   - Image Upscale → Single/Batch
-   - Video Upscale → Single/Batch
-3. **Choose your AI model** (PyTorch .pth/.pt/.safetensors files)
-4. **Select input files** (single mode) or ensure files are in `input/` directory (batch mode)
-5. **Wait for processing** - files will be saved to `output/` directory
-
 ### Supported Formats
 
 **Images:**
@@ -143,9 +133,6 @@ The tool expects and creates these directories:
 
 - [x] Image upscaling (single and batch)
 - [x] Video upscaling (single and batch)
-- [x] GPU/CPU automatic detection
-- [x] Interactive TUI with Rich and Questionary
-- [x] Spandrel model loading support
 - [x] FFmpeg integration for video processing
 - [x] Audio preservation in video upscaling
 - [x] Multiple image/video format support
@@ -159,8 +146,6 @@ The tool expects and creates these directories:
 - [x] **Progress Bars**: Real-time progress indication for long operations
 - [ ] **Model Management**: Built-in model organization and metadata
 - [ ] **Configuration System**: Settings persistence and customization
-- [ ] **Preview Mode**: Before/after comparison preview
-- [ ] **Plugin System**: Extensible architecture for custom processing
 
 ## 🤝 Contributing
 
