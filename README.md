@@ -55,6 +55,7 @@ pip install uv
 ```bash
 git clone <repository-url>
 cd mediabatch
+uv venv
 uv pip install .
 ```
 
