@@ -37,7 +37,7 @@ class ImageUpscale(BaseUpscaler):
         else:
             save_image(output_image, image_path)
         
-    def process_batch_image(self, input_dir) -> None:
+    def process_batch_image(self, input_dir, output_dir=None) -> None:
         
         image_files = load_images(input_dir)
         
@@ -46,7 +46,10 @@ class ImageUpscale(BaseUpscaler):
             return
 
         for image_file in tqdm(image_files, desc="Upscaling images", unit="img"):
-            self.process_image(image_file)
+            if output_dir:
+                self.process_image(image_file, output_dir)
+            else:
+                self.process_image(image_file)
         
         print("Batch processing Complete!")
         
