@@ -79,7 +79,14 @@ run-tui.bat
 
 ### Command Line Interface (CLI)
 
-The CLI supports all TUI operations through command-line arguments for automation and scripting.
+#### CLI Options
+
+- `--upscale`: Choose operation type (`image` or `video`)
+- `--single`: Process a single file
+- `--batch`: Process all files in a directory
+- `--input`: Input file or directory path (defaults to `input/`)
+- `--model`: Model file path or name (searches in `models/` if filename only)
+- `--output`: Output directory path (defaults to `output/`)
 
 #### Basic Syntax
 
@@ -128,15 +135,6 @@ uv run src/main.py --upscale video --batch --input "videos" --model "2x_ESRGAN"
 # Full path example
 uv run src/main.py --upscale video --batch --input "C:\raw_videos" --model "C:\models\upscaler.pth" --output "C:\processed"
 ```
-
-#### CLI Options
-
-- `--upscale`: Choose operation type (`image` or `video`)
-- `--single`: Process a single file
-- `--batch`: Process all files in a directory
-- `--input`: Input file or directory path (defaults to `input/`)
-- `--model`: Model file path or name (searches in `models/` if filename only)
-- `--output`: Output directory path (defaults to `output/`)
 
 #### Model Path Handling
 
