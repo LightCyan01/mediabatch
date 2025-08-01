@@ -1,6 +1,6 @@
 # Mediabatch
 
-**Mediabatch** is a simple terminal-based image and video upscaling tool that uses AI models to enhance the resolution and quality of your media files. It provides both single file and batch processing capabilities through an intuitive text user interface (TUI).
+**Mediabatch** is a terminal-based image and video upscaling tool that uses AI models to enhance the resolution and quality of your media files. It provides both single file and batch processing capabilities through an interactive text user interface (TUI) or command-line interface (CLI).
 
 ## Features
 
@@ -8,7 +8,7 @@
 - **Video Upscaling**: Single and batch video processing
 - **GPU Acceleration**: Automatic CUDA detection for faster processing
 - **Batch Processing**: Process entire directories of images or videos
-- **User-Friendly**: Interactive terminal interface with clear navigation
+- **Dual Interface**: Interactive TUI or CLI for automation
 - **Flexible**: Support for various image formats (PNG, JPEG, BMP, TIFF, WebP, GIF)
 - **Video Support**: Multiple video formats (MP4, AVI, MOV, MKV, WEBM, FLV, WMV)
 
@@ -67,14 +67,90 @@ uv pip install .[dev]
 
 ## Usage
 
-### Quick Start
+### Interactive TUI
 
 ```bash
 # Run the interactive TUI
-uv run main.py
+uv run src/main.py
 
 # Or use the batch file (Windows)
 run-tui.bat
+```
+
+### Command Line Interface (CLI)
+
+The CLI supports all TUI operations through command-line arguments for automation and scripting.
+
+#### Basic Syntax
+
+```bash
+uv run src/main.py --upscale <type> --<mode> --input <path> --model <model> [--output <path>]
+```
+
+#### CLI Examples
+
+**Single Image Upscaling:**
+
+```bash
+# Upscale a single image with full paths
+uv run src/main.py --upscale image --single --input "C:\path\to\image.jpg" --model "path\to\model.pth" --output "C:\output"
+
+# Using default directories (input/ and output/)
+uv run src/main.py --upscale image --single --input "photo.jpg" --model "2x_ESRGAN"
+```
+
+**Batch Image Processing:**
+
+```bash
+# Process all images in a directory
+uv run src/main.py --upscale image --batch --input "C:\my_images" --model "4x_RealESRGAN" --output "C:\upscaled"
+
+# Using default input directory
+uv run src/main.py --upscale image --batch --model "2x_ESRGAN"
+```
+
+**Single Video Upscaling:**
+
+```bash
+# Upscale a single video file
+uv run src/main.py --upscale video --single --input "movie.mp4" --model "4x_RealESRGAN"
+
+# With custom output directory
+uv run src/main.py --upscale video --single --input "C:\videos\clip.mkv" --model "2x_ESRGAN" --output "C:\enhanced"
+```
+
+**Batch Video Processing:**
+
+```bash
+# Process all videos in a directory
+uv run src/main.py --upscale video --batch --input "videos" --model "2x_ESRGAN"
+
+# Full path example
+uv run src/main.py --upscale video --batch --input "C:\raw_videos" --model "C:\models\upscaler.pth" --output "C:\processed"
+```
+
+#### CLI Options
+
+- `--upscale`: Choose operation type (`image` or `video`)
+- `--single`: Process a single file
+- `--batch`: Process all files in a directory
+- `--input`: Input file or directory path (defaults to `input/`)
+- `--model`: Model file path or name (searches in `models/` if filename only)
+- `--output`: Output directory path (defaults to `output/`)
+
+#### Model Path Handling
+
+The CLI accepts both full paths and filenames for models:
+
+```bash
+# Full path to model
+--model "C:\models\4x_RealESRGAN.pth"
+
+# Filename only (searches in models/ directory)
+--model "4x_RealESRGAN"
+
+# Adds .pth extension automatically
+--model "2x_ESRGAN"  # becomes "models/2x_ESRGAN.pth"
 ```
 
 ### Directory Structure
@@ -143,26 +219,10 @@ The tool expects and creates these directories:
 
 - [ ] **Model Download System**: Automatic downloading of popular Spandrel-supported models
 - [ ] **NCNN Architecture Support**: Add support for NCNN models
-- [ ] **CLI Arguments**: Command-line interface without TUI for automation
+- [x] **CLI Arguments**: Command-line interface without TUI for automation
 - [x] **Progress Bars**: Real-time progress indication for long operations
 - [ ] **Configuration System**: Settings persistence and customization
 
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests if applicable
-5. Submit a pull request
-
-## Support
-
-For issues, questions, or contributions:
-
-- Open an issue on GitHub
-- Check the troubleshooting section
-- Review existing issues and discussions
-
 ---
 
-**Happy upscaling! 🚀**
+**Happy upscaling!**
