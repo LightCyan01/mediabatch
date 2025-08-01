@@ -2,7 +2,7 @@
 
 **Mediabatch** is a simple terminal-based image and video upscaling tool that uses AI models to enhance the resolution and quality of your media files. It provides both single file and batch processing capabilities through an intuitive text user interface (TUI).
 
-## ✨ Features
+## Features
 
 - **Image Upscaling**: Single and batch image processing
 - **Video Upscaling**: Single and batch video processing
@@ -12,7 +12,7 @@
 - **Flexible**: Support for various image formats (PNG, JPEG, BMP, TIFF, WebP, GIF)
 - **Video Support**: Multiple video formats (MP4, AVI, MOV, MKV, WEBM, FLV, WMV)
 
-## 🔧 Requirements
+## Requirements
 
 ### System Requirements
 
@@ -20,7 +20,7 @@
 - **FFmpeg**: Required for video processing
 - **GPU**: NVIDIA GPU with CUDA support (optional, falls back to CPU)
 
-## 📦 Installation
+## Installation
 
 ### 1. Install FFmpeg
 
@@ -65,7 +65,7 @@ For development:
 uv pip install .[dev]
 ```
 
-## 🚀 Usage
+## Usage
 
 ### Quick Start
 
@@ -102,7 +102,7 @@ The tool expects and creates these directories:
 - Support for popular architectures (ESRGAN, Real-ESRGAN, SwinIR, HAT, etc.)
 - See [Spandrel's supported architectures](https://github.com/chaiNNer-org/spandrel#supported-architectures) for complete list
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 
@@ -128,9 +128,9 @@ The tool expects and creates these directories:
 - Ensure output directory is writable
 - Close files in other applications
 
-## 📝 TODO
+## TODO
 
-### ✅ Completed Features
+### Completed Features
 
 - [x] Image upscaling (single and batch)
 - [x] Video upscaling (single and batch)
@@ -145,10 +145,9 @@ The tool expects and creates these directories:
 - [ ] **NCNN Architecture Support**: Add support for NCNN models
 - [ ] **CLI Arguments**: Command-line interface without TUI for automation
 - [x] **Progress Bars**: Real-time progress indication for long operations
-- [ ] **Model Management**: Built-in model organization and metadata
 - [ ] **Configuration System**: Settings persistence and customization
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch
@@ -156,7 +155,7 @@ The tool expects and creates these directories:
 4. Add tests if applicable
 5. Submit a pull request
 
-## 🆘 Support
+## Support
 
 For issues, questions, or contributions:
 
