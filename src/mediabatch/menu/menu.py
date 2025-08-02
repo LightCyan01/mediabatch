@@ -33,7 +33,7 @@ def main_menu():
         print("Using CPU\n")
     return questionary.select(
         "▶ Main menu", choices=[
-            "Image Upscale", "Video Upscale", "Download Model", "Settings", "Quit"],
+            "Image Upscale", "Video Upscale", "Settings", "Quit"],
         style=q_style
     ).ask()
     

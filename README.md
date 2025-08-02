@@ -212,13 +212,12 @@ The tool expects and creates these directories:
 - [x] Audio preservation in video upscaling
 - [x] Multiple image/video format support
 - [x] Cross-platform compatibility
+- [x] CLI Arguments: Command-line interface without TUI for automation
+- [x] Progress Bars: Real-time progress indication for long operations
 
 ### 🚧 Planned Features
 
-- [ ] **Model Download System**: Automatic downloading of popular Spandrel-supported models
 - [ ] **NCNN Architecture Support**: Add support for NCNN models
-- [x] **CLI Arguments**: Command-line interface without TUI for automation
-- [x] **Progress Bars**: Real-time progress indication for long operations
 - [ ] **Configuration System**: Settings persistence and customization
 
 ---
