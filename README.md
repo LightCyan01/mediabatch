@@ -46,8 +46,22 @@ sudo apt install ffmpeg
 
 ### 2. Install uv (Package Manager)
 
+**Option 1: Using pip**
+
 ```bash
 pip install uv
+```
+
+**Option 2: Using PowerShell (Windows)**
+
+```powershell
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+```
+
+**Option 3: Using curl (macOS/Linux)**
+
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
 ### 3. Clone and Install
