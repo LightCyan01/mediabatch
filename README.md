@@ -234,6 +234,16 @@ The tool expects and creates these directories:
 - [ ] **NCNN Architecture Support**: Add support for NCNN models
 - [ ] **Configuration System**: Settings persistence and customization
 
+## Contributing
+
+If you'd like to help improve Mediabatch, please follow these guidelines:
+
+1. Fork the repository
+2. Describe your changes
+3. Write clear, maintainable code
+
+If you have questions or want to discuss ideas, feel free to open an issue or start a discussion.
+
 ---
 
 **Happy upscaling!**
